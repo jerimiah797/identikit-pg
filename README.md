@@ -17,6 +17,15 @@ SwiftUI view.
   SwiftUI `Canvas`, and the protocol seam to add your own.
 - Transparent by default, so icons adapt to light or dark backgrounds.
 
+## Preview
+
+The three built-in styles, generated from the same seeds. Icons are transparent
+by default, so they sit cleanly on light or dark backgrounds:
+
+![Identikit styles on a light background](Assets/avatars-white.png)
+
+![Identikit styles on a dark background](Assets/avatars-black.png)
+
 ## Installation
 
 Swift Package Manager:
