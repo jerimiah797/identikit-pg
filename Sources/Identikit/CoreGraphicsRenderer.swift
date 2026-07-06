@@ -74,6 +74,15 @@
         public func addCircle(_ corner: IdenticonPoint, diameter: Double, counterClockwise: Bool) {
             let radius = diameter / 2
             let center = CGPoint(x: corner.x + radius, y: corner.y + radius)
+            // Start a fresh subpath at the arc's start point. `beginShape` groups
+            // every shape of one color into a single accumulating path, so at this
+            // point there is usually a current point left by a prior polygon/circle.
+            // `CGMutablePath.addArc(center:…)` connects that current point to the
+            // arc's start with a straight line — a stray spoke that, filled under
+            // the nonzero winding rule, slashes visible slivers across the icon.
+            // The explicit move breaks the subpath, exactly as SwiftUICanvasRenderer
+            // does; `addPolygon` already moves to its first vertex for the same reason.
+            path.move(to: CGPoint(x: center.x + radius, y: center.y))
             path.addArc(
                 center: center,
                 radius: CGFloat(radius),
