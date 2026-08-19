@@ -12,7 +12,7 @@
     struct SwiftUICanvasRendererTests {
         @Test("Every style produces drawable shapes")
         func stylesProduceShapes() {
-            let styles: [any IdenticonStyle] = [JdenticonStyle(), MosaicStyle(), GitHubStyle()]
+            let styles: [any IdenticonStyle] = [JdenticonStyle(), MosaicStyle(), GitHubStyle(), RosetteStyle()]
             for style in styles {
                 let renderer = SwiftUICanvasRenderer(iconSize: 96)
                 style.render(hash: IdenticonHasher.resolve("burrows"), config: IdenticonConfig(), into: renderer)

@@ -32,6 +32,10 @@ import Foundation
 // "blockies" identicon algorithm (Alex Van de Sande and contributors). It is a
 // clean reimplementation rather than a port — the PRNG normalization, palette,
 // and seeding differ — so no upstream code is copied; the credit is courtesy.
+//
+// `RosetteStyle` carries no upstream provenance: a polar grid of concentric
+// bands is a general construction, not a port of any existing identicon. It
+// shares only this module's own color theme with `JdenticonStyle`.
 
 /// Attribution metadata for the third-party algorithms bundled in this module.
 public enum IdenticonAttribution {
@@ -49,4 +53,9 @@ public enum IdenticonAttribution {
     public static let github =
         "GitHubStyle implements the widely-used 5×5 mirrored single-color "
         + "identicon technique popularized by GitHub."
+
+    /// Human-readable provenance string for the bundled `RosetteStyle`.
+    public static let rosette =
+        "RosetteStyle is original to Identikit — a polar grid of concentric "
+        + "bands with no third-party algorithm behind it."
 }
