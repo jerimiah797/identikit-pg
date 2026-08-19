@@ -30,8 +30,15 @@ Naming the layer is most of the thinking, because it decides what file you open.
 | 6 | Stop binary changes reaching `main` unexamined | Formula — a check step that holds any diff touching a binary path | `ip-ef6` regenerated both preview PNGs, ~29 KB → ~69 KB each, and merged them. It was fine only because the polecat volunteered a byte-identity check on the existing rows and the architect verified the new one by pixel dimensions. Neither was required of them | A branch altering a PNG is held, the binary is named in the report, and the evidence that justifies it is stated rather than optional | Half a slot |
 | 7 | Read the evidence it already writes about itself | Order — self-improvement loop (option; a loop, not a pack) | The architect found two manifest-versus-codebase contradictions and recorded them in bead notes. They surfaced only because I went looking. `FACTORY_LOG.md` accumulates order output nobody reads | A scheduled pass surfaces a finding I had not already read, in a place I will see it, without my opening `bd show` | One slot |
 
-Seven rows. Rows 2, 4 and 7 are shipped options; rows 1, 3, 5 and 6 are mine, which is
-where the factory stops being the tutorial's and starts being Identikit's.
+| 8 | Refuse to dispatch a bead whose premise no longer matches the code | Formula — a freshness check in the polecat's opening steps, or Order — a patrol that re-reads open beads against `HEAD` | Nothing re-validates a bead between filing and dispatch. `ip-x04` ("README advertises four renderers but ships three") was filed when there were also three styles. Merging `RosetteStyle` made it four styles, so the README now carries two adjacent, visually parallel lines counting by different conventions — and `ip-x04` still dispatched against the older picture. It survived only because it happened to be about renderers; a bead saying "add a fourth style", filed the same afternoon, would now be stale and would have dispatched anyway | File a bead describing current code, change that code, then sling it. It comes back marked stale, citing what moved, and no branch is created | One slot |
+
+Eight rows. Rows 2, 4 and 7 are shipped options; rows 1, 3, 5, 6 and 8 are mine, which
+is where the factory stops being the tutorial's and starts being Identikit's.
+
+Row 8 is deliberately distinct from row 2. A bead gate judges whether a bead is
+**well-specified**; row 8 judges whether it is **still true**. `ip-x04` would pass a
+bead gate cleanly — acceptance criteria, unambiguous scope, a named file — and it is
+precisely the row-8 case.
 
 Row 1 is deliberately not one of the six options, so it does not fit the L3 slot as
 written. It is being built as pre-work instead: everything below it is safer to
