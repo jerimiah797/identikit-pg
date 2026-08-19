@@ -22,16 +22,20 @@ Naming the layer is most of the thinking, because it decides what file you open.
 
 | Rank | What I want the factory to do | Layer | Why it does not do this today | How I will know it worked | Cost |
 | --- | --- | --- | --- | --- | --- |
-| 1 | Refuse a bead that does not say what "done" means, and hand it back naming what is missing, before any implementer sees it | Pack — `bead-gate-rig` (option) | Nothing sits in front of the polecat. `ip-ef6` had a thin description and no acceptance criteria, and went straight to an implementer that invented a style name, a visual concept, and its own definition of correct | Re-sling a bead with no acceptance criteria. It comes back rejected, the feedback names the missing field, and no branch is created | One `gc import add`, one lab slot |
-| 2 | Require a human approval between "checks are green" and "it is on main" | Formula — dispatch through `mol-polecat-pr` instead of the default direct path | `pr-gate-rig` and `pr-gate-city` are both installed, but `ip-ef6` ran in `direct` mode, so the refinery fast-forwarded to `main` on `architect_approved=true` alone. The architect had written two items explicitly "for the human at Gate 2". They merged past unread | Sling a bead and watch a PR open instead of a merge. `main` does not move until I approve. The architect's report is readable before, not after | Half a slot — config, not new capability |
+| 1 | Remove the factory's ability to move `main` at all: publish a pull request and leave the landing to a human | Formula + repo config — default work to `merge_strategy=pr`, then branch protection so "publish" is terminal | The `approval-review` step **already runs** — and the refinery is its own approver (`refinery_approved=true`). On `ip-ef6` it cleared its own checklist, then `direct` mode fast-forwarded to `main`. No installed pack implements the manifest's Gate 2 (a *human* approving a review report); PR mode only produces an artifact that needs a human to finish. And agents push with my credentials, so protection has to bind admins to bind them | Sling a bead: a PR appears, `main` does not move, and a direct push to `main` from an agent worktree is refused | Two half-slots |
+| 2 | Refuse a bead that does not say what "done" means, and hand it back naming what is missing, before any implementer sees it | Pack — `bead-gate-rig` (option) | Nothing sits in front of the polecat. `ip-ef6` had a thin description and no acceptance criteria, and went straight to an implementer that invented a style name, a visual concept, and its own definition of correct | Re-sling a bead with no acceptance criteria. It comes back rejected, the feedback names the missing field, and no branch is created | One `gc import add`, one lab slot (the L3 option) |
 | 3 | Fail a branch mechanically when it breaks a rule the manifest calls absolute | Formula — a check step in the refinery patrol | Every convention that held on `ip-ef6` held because the polecat imitated the repo, not because anything checked: goldens untouched, `import Testing` over XCTest, Conventional Commit subjects, Jdenticon's colour theme reused. Correct behaviour, zero enforcement | Three throwaway branches, each breaking one rule — a regenerated `goldens.json`, an XCTest import, a non-conventional subject. Each one fails the gate and names which rule | One slot |
 | 4 | Produce review verdicts scored against named principles instead of prose judgement | Pack — `principles-loop-rig` (option), plus the three ADRs as project work | There is no `docs/adr/` tree, so the architect reasons from the codebase and its own priors. It did that unusually well on `ip-ef6`, but "unusually well" is not a property you can rely on twice | Architect output cites a numbered principle or ADR per finding, and a change that violates one is rejected with that citation rather than flagged for a human | One slot, plus writing 3 ADRs (`ip-rsd`) |
 | 5 | Render its own agent prompts without errors | Pack — fix `setup` and `architect-rig` prompt templates | `propulsion-refinery` and `approval-fallacy-polecat` are undefined, so `{{ template … }}`, `capability-ledger-merge`, `architecture` and `following-mol` render literally. The refinery diagnosed this about itself mid-run. Every result so far was produced by agents running on degraded prompts | `gc lint` reports no template errors for either pack, and `gc prime` output for polecat and refinery contains no literal `{{` | An hour; upstream PR to `sf-tutorial` |
 | 6 | Stop binary changes reaching `main` unexamined | Formula — a check step that holds any diff touching a binary path | `ip-ef6` regenerated both preview PNGs, ~29 KB → ~69 KB each, and merged them. It was fine only because the polecat volunteered a byte-identity check on the existing rows and the architect verified the new one by pixel dimensions. Neither was required of them | A branch altering a PNG is held, the binary is named in the report, and the evidence that justifies it is stated rather than optional | Half a slot |
 | 7 | Read the evidence it already writes about itself | Order — self-improvement loop (option; a loop, not a pack) | The architect found two manifest-versus-codebase contradictions and recorded them in bead notes. They surfaced only because I went looking. `FACTORY_LOG.md` accumulates order output nobody reads | A scheduled pass surfaces a finding I had not already read, in a place I will see it, without my opening `bd show` | One slot |
 
-Seven rows. Rows 1, 4 and 7 are shipped options; rows 2, 3, 5 and 6 are mine, which is
+Seven rows. Rows 2, 4 and 7 are shipped options; rows 1, 3, 5 and 6 are mine, which is
 where the factory stops being the tutorial's and starts being Identikit's.
+
+Row 1 is deliberately not one of the six options, so it does not fit the L3 slot as
+written. It is being built as pre-work instead: everything below it is safer to
+experiment with once the factory can no longer land its own commits.
 
 ## Where these rows came from
 
@@ -53,9 +57,11 @@ where the factory stops being the tutorial's and starts being Identikit's.
   invisible unless someone files them (`ip-x04`).
 
 - **Something ran that should not have, or did not run that should have:** the merge
-  ran. `SOFTWARE_FACTORY_MANIFEST.md` specifies two human gates; the installed
-  direct-merge path has none, so Gate 2 did not run and two items addressed to me
-  landed on `main` unread. Row 2.
+  ran. An approval step *did* fire — `mol-refinery-pr-patrol`'s `approval-review`,
+  with the refinery as its own approver — and it cleared. What never ran is the
+  manifest's Gate 2, a *human* approving a review report, because no installed pack
+  implements it. Two items the architect addressed to me landed on `main` unread.
+  Row 1.
 
 ## Project work these rows depend on
 
