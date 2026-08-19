@@ -15,8 +15,8 @@ SwiftUI view.
   - `GitHubStyle` — the classic 5×5 mirrored single-color identicon.
   - `RosetteStyle` — a radial wheel: concentric bands of sectors with n-fold
     rotational symmetry, on Jdenticon's color theme.
-- **Four built-in renderers** — SVG string, CoreGraphics (`CGImage`),
-  SwiftUI `Canvas`, and the protocol seam to add your own.
+- **Three built-in renderers** — SVG string, CoreGraphics (`CGImage`), and
+  SwiftUI `Canvas`. A protocol seam lets you add your own.
 - Transparent by default, so icons adapt to light or dark backgrounds.
 
 ## Preview
