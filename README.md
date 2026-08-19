@@ -7,19 +7,21 @@ SwiftUI view.
 
 - **Zero third-party dependencies** — only system frameworks (CryptoKit,
   CoreGraphics, SwiftUI).
-- **Three built-in styles**, swappable independently of the renderer:
+- **Four built-in styles**, swappable independently of the renderer:
   - `JdenticonStyle` — organic, octagonally-symmetric vector shapes
     (a faithful port of [Jdenticon](https://github.com/dmester/jdenticon),
     byte-for-byte verified).
   - `MosaicStyle` — a symmetric, full-bleed pixel grid in two vivid colors.
   - `GitHubStyle` — the classic 5×5 mirrored single-color identicon.
+  - `RosetteStyle` — a radial wheel: concentric bands of sectors with n-fold
+    rotational symmetry, on Jdenticon's color theme.
 - **Four built-in renderers** — SVG string, CoreGraphics (`CGImage`),
   SwiftUI `Canvas`, and the protocol seam to add your own.
 - Transparent by default, so icons adapt to light or dark backgrounds.
 
 ## Preview
 
-The three built-in styles, generated from the same seeds. Icons are transparent
+The four built-in styles, generated from the same seeds. Icons are transparent
 by default, so they sit cleanly on light or dark backgrounds:
 
 ![Identikit styles on a light background](Assets/avatars-white.png)
@@ -78,6 +80,7 @@ icon; the default is `JdenticonStyle`.
 | `JdenticonStyle` | Multi-color octagonal vector shapes |
 | `MosaicStyle(gridSize:)` | Two-color symmetric pixel grid (default 8×8) |
 | `GitHubStyle(gridSize:)` | Single-color 5×5 mirrored sprite |
+| `RosetteStyle(bandCount:)` | Radial wheel of banded sectors (default 3 bands) |
 
 ## Configuration
 
