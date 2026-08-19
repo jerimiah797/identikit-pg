@@ -10,3 +10,21 @@ Package.resolved
 *.db
 .beads-credential-key
 .beads/proxieddb/
+
+# Gas City
+.beads/*
+!.beads/identity.toml
+
+# gc runtime dropped into the rig checkout by the harness. Not ignored by the
+# block gc rig add writes, so a broad `git add -A` from an agent would sweep it
+# into a PR.
+.gc/
+
+# Written by the base-factory pack's two orders (factory-pulse on a clock,
+# bead-closed-log on an event). Agent-generated churn — read it, don't track it.
+FACTORY_LOG.md
+
+# Vendored skill payloads. skills-lock.json records what is installed and is
+# tracked; the payload itself is third-party content, like node_modules.
+docs/.agents/
+docs/.claude/

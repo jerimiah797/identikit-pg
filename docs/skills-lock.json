@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "manifest-generator": {
+      "source": "audiojak/manifest-generator",
+      "sourceType": "github",
+      "skillPath": "manifest-generator/SKILL.md",
+      "computedHash": "a19e48a7c60a029bef35cae01ff7c4b7c96d799dbb2910402bdf85140b3656c0"
+    }
+  }
+}
